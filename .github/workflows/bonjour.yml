@@ -1,10 +1,17 @@
-name: Bonjour
+name: Workflow d’initiation
 
 on: [push]
 
 jobs:
-  bonjour:
+  saluer-le-monde:
     runs-on: ubuntu-latest
+
     steps:
       - name: Dire bonjour
         run: echo "Bonjour depuis GitHub Actions !"
+
+      - name: Afficher la date du jour
+        run: date
+
+      - name: Afficher l'acteur GitHub
+        run: echo ${{ github.actor }}
