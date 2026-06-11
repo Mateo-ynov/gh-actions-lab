@@ -1,0 +1,13 @@
+name: Scheduled Workflow
+
+on:
+  schedule:
+    - cron: "0 9 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  tache-planifiee:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Afficher la date
+        run: date
