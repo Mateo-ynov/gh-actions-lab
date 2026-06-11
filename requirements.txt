@@ -1,1 +1,15 @@
-pytest
+# ⚠️  TRAINING ONLY — these versions are intentionally outdated.
+#    Trivy (Exercise 5) will detect CVEs in these packages.
+#    In real projects, always pin to the latest patched release.
+
+# ── Application ─────────────────────────────────────────────
+Flask==2.1.0          # outdated — newer patch releases available
+Werkzeug==2.1.0       # outdated — used internally by Flask
+Pillow==9.0.0         # outdated — multiple CVEs in 9.x (CWE-120, CWE-190)
+requests==2.20.0      # outdated — CVE-2023-32681 present
+
+# ── Dev / Test (version-pinned but fine for training) ────────
+pytest==7.4.0
+pytest-cov==4.1.0
+flake8==6.1.0
+bandit==1.7.5

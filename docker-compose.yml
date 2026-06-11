@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: development
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:5000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+# ─────────────────────────────────────────────────────────────
+# Quick test commands once the app is running:
+#
+#   List all tasks:
+#   curl http://localhost:5000/tasks
+#
+#   SQL Injection — returns ALL tasks (bypasses the filter):
+#   curl "http://localhost:5000/tasks?owner=' OR '1'='1"
+#
+#   Login (returns the hardcoded admin token):
+#   curl -X POST http://localhost:5000/login \
+#        -H "Content-Type: application/json" \
+#        -d '{"username":"admin","password":"admin123"}'
+# ─────────────────────────────────────────────────────────────
