@@ -1,0 +1,34 @@
+name: Pipeline
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Linting
+        run: echo "Linting..."
+
+  test:
+    runs-on: windows-latest
+    needs: lint
+    steps:
+      - name: Testing
+        run: echo "Testing on Windows..."
+
+  build:
+    runs-on: macos-latest
+    needs:
+      - lint
+      - test
+    steps:
+      - name: Building
+        run: echo "Building on macOS..."
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: build
+    if: always()
+    steps:
+      - name: Notification finale
+        run: echo "Statut final"
