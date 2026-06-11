@@ -1,0 +1,44 @@
+name: Shell Lab
+
+on:
+  workflow_dispatch:
+
+jobs:
+  shell-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Script multi-lignes
+        run: |
+          echo "Message 1"
+          echo "Message 2"
+          echo "Message 3"
+
+      - name: Préparer le dossier scripts
+        run: |
+          mkdir -p scripts
+          echo "Bonjour depuis scripts" > scripts/test.txt
+
+      - name: Utiliser working-directory
+        working-directory: ./scripts
+        run: |
+          ls
+          cat test.txt
+
+      - name: Tester les variables
+        env:
+          NOM: Mateo
+          COURS: GitHub Actions
+        run: |
+          echo $NOM
+          echo $COURS
+
+      - name: Étape qui échoue volontairement
+        continue-on-error: true
+        run: |
+          echo "Cette étape échoue"
+          exit 1
+
+      - name: Vérifier que le job continue
+        run: echo "Le job continue malgré l'erreur"
